@@ -1,1 +1,21 @@
+.searchResult {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
 
+  &_elem {
+    background-color: rgb(240, 232, 198);
+    border: solid white 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 250px;
+    height: 330px;
+    padding: 10px;
+    &-image {
+      width: 185px;
+      height: 260px;
+    }
+  }
+}
