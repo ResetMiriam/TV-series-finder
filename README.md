@@ -2,7 +2,7 @@
 
 ### Una apasionada desarrolladora frontend viviendo en Madrid
 
-Este es el ejercicio realizado de cara a la primera evaluación de Adalab, correspondiente con el Módulo 1: HTML y CSS.
+Este es el ejercicio realizado de cara a la primera evaluación de Adalab, correspondiente con el Módulo 2: JavaScript.
 
 ## 📄 ¿Qué necesitas tener instalado para ejecutar este proyecto?
 
