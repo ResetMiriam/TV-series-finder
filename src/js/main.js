@@ -16,8 +16,12 @@ let series = [];
 let favorites = [];
 
 //----------FUNCIONES-------------//
-// petición api
 
+// busqueda con la info del input
+function handleSearch() {
+  apiRequest(searchText.value);
+}
+// petición api
 function apiRequest(userSearch) {
   fetch("//api.tvmaze.com/search/shows?q=" + userSearch)
     .then((response) => response.json())
@@ -51,14 +55,19 @@ function paintSeries() {
     listSeries.innerHTML += html;
   }
 }
+// escuchar click en cada serie
+const seriesCards = document.querySelectorAll(".js-searchResult_elem");
+for (const serieCard of seriesCards) {
+  serieCard.addEventListener("click", showFavorites);
+}
+
+function showFavorites(ev) {
+  const favShows = ev.currentTarget;
+}
 
 // preventDefault
 function handleForm(ev) {
   ev.preventDefault();
-}
-// busqueda con la info del input
-function handleSearch() {
-  apiRequest(searchText.value);
 }
 
 //----------EVENTOS Y DEMÁS-------------//
