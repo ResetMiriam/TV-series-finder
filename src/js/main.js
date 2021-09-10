@@ -13,7 +13,7 @@ const requestPanel = document.querySelector(".js-form");
 
 // para utilizar
 let series = [];
-let userSearch = "";
+let userSearch = searchText.value;
 let favorites = [];
 
 //----------FUNCIONES-------------//
@@ -23,8 +23,11 @@ function apiRequest(userSearch) {
   fetch("//api.tvmaze.com/search/shows?q=" + userSearch)
     .then((response) => response.json())
     .then((data) => {
+      const seriesList = data;
       series = [];
-      for (const serie of data) series.push(serie.show);
+      for (const serie of seriesList) {
+        series.push(serie.show);
+      }
       console.log(series);
       paintSeries();
     });
@@ -32,6 +35,7 @@ function apiRequest(userSearch) {
 }
 // plasmar series
 function paintSeries() {
+  listSeries.innerHTML = "";
   let html = "";
   for (const serie of series) {
     html = `<li id=${serie.id} class="searchResult_elem js-searchResult_elem">`;
