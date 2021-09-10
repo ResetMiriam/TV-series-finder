@@ -13,7 +13,6 @@ const requestPanel = document.querySelector(".js-form");
 
 // para utilizar
 let series = [];
-let userSearch = searchText.value;
 let favorites = [];
 
 //----------FUNCIONES-------------//
@@ -28,7 +27,6 @@ function apiRequest(userSearch) {
       for (const serie of seriesList) {
         series.push(serie.show);
       }
-      console.log(series);
       paintSeries();
     });
   //
@@ -48,7 +46,7 @@ function paintSeries() {
         src=${serie.image.medium}
         title=${serie.name} alt=${serie.name}/>`;
     }
-    html += `<h2>${serie.name}</h2>`;
+    html += `<h3>${serie.name}</h3>`;
     html += `</li>`;
     listSeries.innerHTML += html;
   }
