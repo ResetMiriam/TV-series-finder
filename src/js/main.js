@@ -3,9 +3,9 @@
 //----------DECLARACIONES-------------//
 
 // input filter
-const searchText = document.querySelector(".js_search-input");
+const searchText = document.querySelector(".js_formInput");
 // button
-const searchButton = document.querySelector(".js-search-button");
+const searchButton = document.querySelector(".js-formButton");
 // ul -- donde se pintan series - selecciono donde se pintan
 const listSeries = document.querySelector(".js-searchResult");
 // form
@@ -33,7 +33,6 @@ function addFavorites(ev) {
   const serieClicked = series.find((idSerie) => {
     return idSerie.id === serieSelected;
   });
-  console.log(serieSelected);
   const favAlready = favorites.findIndex((idFavorite) => {
     return idFavorite.id === serieSelected;
   });
@@ -132,10 +131,12 @@ function paintSeries() {
 
 // OK plasmar favoritos
 function paintFavorites() {
+  listFav.innerHTML = "";
   let htmlFav = "";
+
   for (const serie of favorites) {
     htmlFav = `<li id=${serie.id} class="fav_section-list js-favSectionList">`;
-    htmlFav += `<button id ="${serie.id}" class="js-deleteCross faicon ">x</button>`;
+    htmlFav += `<button id="${serie.id}" class="js-deleteCross faicon ">x</button>`;
     if (null === serie.image) {
       htmlFav += `<img class="fav_elem-img"
           src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV" 
@@ -148,7 +149,17 @@ function paintFavorites() {
     htmlFav += `<h4 class="fav_elem-serieTitle"> ${serie.name}</h4>`;
     htmlFav += `</li>`;
     listFav.innerHTML += htmlFav;
+
     listenClickedFavorites();
+  }
+}
+
+function favHidden() {
+  const favSection = document.querySelector(".js-favArea");
+  if ((favSection.innerHTML = "")) {
+    favSection.classList.add("js-hidden");
+  } else {
+    favSection.classList.remove("js-hidden");
   }
 }
 

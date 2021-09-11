@@ -1,17 +1,70 @@
 * {
-  font-family: roboto-slab;
+  font-family: $title-font;
   box-sizing: border-box;
+}
+
+.page__header--title {
+  font-family: $title-font;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 35px;
+  color: $blue;
+  padding: 30px 0px 20px 20px;
+  @media all and (min-width: 768px) {
+    font-size: 45px;
+  }
+  @media all and (min-width: 1208px) {
+    font-size: 55px;
+  }
+}
+
+.form {
+  &__input {
+    width: 80%;
+    height: 40px;
+    padding: 10px;
+    margin: 20px;
+    background-color: $bluewhite;
+    border: none;
+    border-radius: 20px;
+    border-bottom: 2px solid $yellow;
+    border-right: 2px solid $yellow;
+  }
+  &__button {
+    color: $grey;
+
+    font-size: 18px;
+    font-weight: 600;
+    width: 150px;
+    height: 40px;
+    border: none;
+    border-radius: 20px;
+    border-bottom: 2px solid $yellow;
+    border-right: 2px solid $yellow;
+    text-transform: uppercase;
+    margin: 20px 0 20px 10px;
+    background-color: $bluewhite;
+    &:hover {
+      background-color: $yellow;
+      border-bottom: 2px solid $yellow;
+      border-right: 2px solid $yellow;
+      box-shadow: 2px 2px 2px;
+      color: $grey;
+      transform: translateY(-2px);
+    }
+  }
 }
 
 .searchResult {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   padding: 0px;
-  margin: 0px;
+  margin: 15px 0px 0px 0px;
   &_elem {
-    background-color: rgb(240, 232, 198);
-    border: solid white 5px;
+    background-color: white;
+    border: solid $yellow 5px;
     border-radius: 20px;
     margin: 2px;
     display: flex;
@@ -21,6 +74,8 @@
     width: 250px;
     height: 330px;
     padding: 10px;
+    @media all and (min-width: 768px) {
+    }
 
     &-img {
       width: 185px;
@@ -31,38 +86,55 @@
 }
 
 .series_container {
-  background-color: grey;
+  width: 100vw;
   display: flex;
-  flex-direction: column-reverse;
-  margin: 15px 0px 0px 0px;
-  border-top: solid yellow 5px;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin: 10px 0px 0px 0px;
   @media all and (min-width: 768px) {
     flex-direction: row;
+    justify-content: flex-start;
   }
 }
 
 .fav_section {
-  background-color: yellow;
+  background-color: $bluewhite;
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   border-radius: 20px;
-
-  min-width: 100vw;
+  margin: 20px 0;
   @media all and (min-width: 768px) {
-    border-right: solid 5px rgb(101, 163, 245);
+    border-right: solid 5px $blue;
     min-width: 300px;
+    width: 40vw;
+    height: 100vh;
+    float: left;
+    margin: 15px 15px 0px 15px;
+  }
+  &-title {
+    font-family: $title-font;
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 20px;
+    color: $red;
+    padding: 10px;
+
+    @media all and (min-width: 768px) {
+      padding: 30px 0px 20px 20px;
+      font-size: 24px;
+    }
   }
 }
 .fav_list-completed {
-  background-color: yellowgreen;
   list-style: none;
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
-
+  justify-content: center;
   border-radius: 20px;
-  border-top: solid 5px rgb(101, 163, 245);
+
   min-width: 100vw;
   @media all and (min-width: 768px) {
     min-width: 300px;
@@ -72,7 +144,7 @@
 .fav_section-list {
   padding: 10px;
   margin: 2px;
-  border: solid pink 2px;
+  border: solid $pink 2px;
   width: 120px;
   height: 200px;
   border-radius: 20px;
@@ -84,10 +156,10 @@
   border-radius: 5px;
 }
 
-.fav_elem-serieTitle {
-}
-
 .serie--favorite {
-  background-color: rgb(191, 243, 194);
-  border: solid rgb(245, 144, 144) 5px;
+  background-color: $yellow;
+  border: solid $pink 5px;
+}
+.js-hidden {
+  display: none;
 }
