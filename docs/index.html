@@ -4,10 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Evaluación: Buscador de series</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Lemonada&family=Tourney:wght@100;500;900&display=swap"
       rel="stylesheet"
     />
+
     <link rel="stylesheet" href="./assets/css/main.css" />
     <link rel="icon" href="" />
   </head>
@@ -15,27 +19,27 @@
   <body>
     <div class="page">
       <header class="page__header">
-        <h1>Buscador de series</h1>
+        <h1 class="page__header--title">Buscador de series</h1>
       </header>
 
       <main class="page__main">
         <form class="js-form" method="GET">
           <input
-            class="js_search-input"
+            class="js_formInput form__input"
             type="text"
             name="search"
             id="search"
             placeholder="Ej: House"
           />
-          <button class="js-search-button">Search</button>
+          <button class="js-formButton form__button">Search</button>
         </form>
         <div class="series_container">
-          <ul class="searchResult js-searchResult"></ul>
-          <section class="favouriteSection">
-            <h2 class="favourite_section-title js-favouriteSectionTitle">
-              Mis series favoritas
-            </h2>
-            <ul class="js-favouriteSectionList favourite_section-list"></ul>
+          <section class="searchResult-container">
+            <ul class="searchResult js-searchResult"></ul>
+          </section>
+          <section class="fav_section js-favSection">
+            <h2 class="fav_section-title js-favSectionTitle">Mis series favoritas</h2>
+            <ul class="js-favListCompleted fav_list-completed"></ul>
           </section>
           <h2></h2>
         </div>

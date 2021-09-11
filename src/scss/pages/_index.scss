@@ -1,17 +1,29 @@
-* {
+body {
   font-family: $title-font;
   box-sizing: border-box;
+}
+
+.page__header {
+  display: flex;
+}
+.fa-video {
+  font-size: 50px;
+  color: $pink;
+  border-top: $blue solid 5px;
+  height: 50px;
+  border-radius: 10px;
+  margin: 22px 0px 20px 20px;
 }
 
 .page__header--title {
   font-family: $title-font;
   text-transform: uppercase;
   font-weight: 500;
-  font-size: 35px;
+  font-size: 40px;
   color: $blue;
   padding: 30px 0px 20px 20px;
   @media all and (min-width: 768px) {
-    font-size: 45px;
+    font-size: 50px;
   }
   @media all and (min-width: 1208px) {
     font-size: 55px;
@@ -20,29 +32,37 @@
 
 .form {
   &__input {
+    color: $grey;
     width: 70%;
-    height: 40px;
+    font-size: 18px;
+    font-weight: 900;
+    height: 30px;
     padding: 10px;
     margin: 20px;
+    outline: none;
     background-color: $bluewhite;
+    text-decoration: none;
     border: none;
     border-radius: 20px;
     border-bottom: 2px solid $yellow;
     border-right: 2px solid $yellow;
+    &::placeholder {
+      color: $greymedium;
+    }
   }
   &__button {
     color: $grey;
-
     font-size: 18px;
     font-weight: 600;
     width: 150px;
+    padding: 10px;
+    margin: 20px;
     height: 40px;
     border: none;
     border-radius: 20px;
     border-bottom: 2px solid $yellow;
     border-right: 2px solid $yellow;
     text-transform: uppercase;
-    margin: 20px 0 20px 10px;
     background-color: $bluewhite;
     &:hover {
       background-color: $yellow;
@@ -74,7 +94,7 @@
     width: 250px;
     height: 330px;
     padding: 10px;
-    &:hoover {
+    &:hover {
       background-color: $lightyellow;
     }
     @media all and (min-width: 768px) {
@@ -93,7 +113,8 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  margin: 10px 0px 0px 0px;
+  margin: 10px 0px 10px 0px;
+  width: 100%;
   @media all and (min-width: 768px) {
     flex-direction: row;
     justify-content: left;
@@ -114,9 +135,20 @@
     border-top: none;
     min-width: 300px;
     width: 40vw;
-    height: 80vh;
+    height: auto;
     float: left;
     margin: 15px 15px 0px 15px;
+  }
+  &-list {
+    padding: 0 10px;
+    margin: 2px;
+    border: solid $pink 2px;
+    width: 120px;
+    height: 200px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
   }
   &-title {
     font-family: $title-font;
@@ -124,9 +156,9 @@
     font-weight: 900;
     font-size: 20px;
     color: $red;
-    padding: 10px;
+    padding: 10px 0;
     @media all and (min-width: 768px) {
-      padding: 30px 0px 20px 20px;
+      padding: 20px;
       font-size: 24px;
     }
   }
@@ -144,19 +176,39 @@
   }
 }
 
-.fav_section-list {
-  padding: 10px;
-  margin: 2px;
-  border: solid $pink 2px;
-  width: 120px;
-  height: 200px;
-  border-radius: 20px;
-}
+.fav_elem {
+  &-delete {
+    color: $grey;
+    font-size: 14px;
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    border: none;
+    border-radius: 50%;
+    border-bottom: 2px solid $yellow;
+    border-right: 2px solid $yellow;
+    text-transform: uppercase;
+    background-color: $blue;
+    position: inherit;
+    &:hover {
+      background-color: $yellow;
+      border-bottom: 2px solid $yellow;
+      border-right: 2px solid $yellow;
+      box-shadow: 2px 2px 2px;
+      color: $grey;
+      transform: translateY(-2px);
+    }
+  }
 
-.fav_elem-img {
-  width: 93px;
-  height: 130px;
-  border-radius: 5px;
+  &-img {
+    width: 93px;
+    height: 130px;
+    border-radius: 5px;
+  }
+  &-serieTitle {
+    font-size: 14px;
+    padding: 5px 0px;
+  }
 }
 
 .serie--favorite {

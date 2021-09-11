@@ -136,7 +136,7 @@ function paintFavorites() {
 
   for (const serie of favorites) {
     htmlFav = `<li id=${serie.id} class="fav_section-list js-favSectionList">`;
-    htmlFav += `<button id="${serie.id}" class="js-deleteCross faicon ">x</button>`;
+    htmlFav += `<button id="${serie.id}" class="js-deleteCross fav_elem-delete ">x</button>`;
     if (null === serie.image) {
       htmlFav += `<img class="fav_elem-img"
           src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV" 
