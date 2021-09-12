@@ -10,14 +10,23 @@ const searchButton = document.querySelector(".js-formButton");
 const listSeries = document.querySelector(".js-searchResult");
 // form
 const requestPanel = document.querySelector(".js-form");
-
 // ul fav -- to paint favs
 const listFav = document.querySelector(".js-favListCompleted");
+// favorites section
+const sectionFav = document.querySelector(".js-favSection");
+// reset favorites
+const resetButtonFav = document.querySelector(".js-resetFav");
 
 let series = [];
 let favorites = [];
 
 //****************************FUNCTIONS****************************//
+
+// Search input value to fetch
+
+function handleSearch() {
+  apiRequest(searchText.value);
+}
 
 // Fetch API
 
@@ -30,16 +39,11 @@ function apiRequest(userSearch) {
       for (const serie of seriesList) {
         series.push(serie.show);
       }
+
       paintSeries();
       setInLocalStorage();
     });
   //
-}
-
-// Search input value to fetch
-
-function handleSearch() {
-  apiRequest(searchText.value);
 }
 
 // PreventDefault submit form
@@ -173,6 +177,7 @@ function listenClickedFavorites() {
 }
 
 // Delete favorites
+
 function deleteFav(ev) {
   const favClicked = parseInt(ev.currentTarget.id);
   const favSelected = favorites.findIndex((idFav) => idFav.id === favClicked);
@@ -192,10 +197,24 @@ function favHidden() {
   paintSeries();
 }
 
+//Reset all favorites button
+
+function resetFav() {
+  localStorage.clear();
+  favorites = [];
+  listFav.innerHTML = "";
+  paintSeries();
+  paintFavorites();
+}
+
 //****************************EXECUTION****************************//
 // Listen button to search
 
 searchButton.addEventListener("click", handleSearch);
+
+// Listen button to reset favorites
+
+resetButtonFav.addEventListener("click", resetFav);
 
 // PreventDefault submit form
 
