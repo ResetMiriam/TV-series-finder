@@ -20,50 +20,10 @@ let favorites = [];
 
 //----------FUNCIONES-------------//
 
+//busqueda
 // OK busqueda con la info del input
 function handleSearch() {
   apiRequest(searchText.value);
-}
-
-//  OK comprobar si la clicada está en favoritos
-function addFavorites(ev) {
-  //sacar ID
-  const serieClicked = parseInt(ev.currentTarget.id);
-  // OK comparar arrayFavorites con ID
-  const serieSelected = series.find((idSerie) => {
-    return idSerie.id === serieClicked;
-  });
-  const favAlready = favorites.findIndex((idFavorite) => {
-    return idFavorite.id === serieClicked;
-  });
-
-  if (favAlready === -1) {
-    favorites.push(serieSelected);
-  } else {
-    favorites.splice(favAlready, 1);
-  }
-  paintSeries();
-  paintFavorites();
-}
-
-function deleteFav(ev) {
-  const favClicked = parseInt(ev.currentTarget.id);
-  const favSelected = favorites.findIndex((idFav) => idFav.id === favClicked);
-  favorites.splice(favSelected, 1);
-  paintSeries();
-  paintFavorites();
-}
-
-// OK escuchar click en cada serie
-function listenClickSeries() {
-  const seriesCards = document.querySelectorAll(".js-searchResult_elem");
-  for (const serieCard of seriesCards)
-    serieCard.addEventListener("click", addFavorites);
-}
-// OK escuchar click en cada favorito
-function listenClickedFavorites() {
-  const favCards = document.querySelectorAll(".js-deleteCross");
-  for (const favCard of favCards) favCard.addEventListener("click", deleteFav);
 }
 
 // OK petición api
@@ -79,25 +39,6 @@ function apiRequest(userSearch) {
       paintSeries();
     });
   //
-}
-
-// OK
-function isFavorite(idSerie) {
-  //compruebo si la paleta que recibo por parámetro está en los favoritos
-  const favoriteFound = favorites.find((idFavorite) => {
-    // la dificultad de esta función interna del find es saber que tengo que comparar
-    // yo consolearía console.log(fav, palette) para ver los datos que debo comparar
-    return idFavorite.id === idSerie.id;
-  });
-  //find devuelve undefined si no lo encuentra, es decir sino esta en el array de favoritos
-  //retorno si está o no está en favoritos
-  if (favoriteFound === undefined) {
-    //retorno false cuando NO está favoritos
-    return false;
-  } else {
-    //retorno true cuando SI está favoritos
-    return true;
-  }
 }
 
 // OK plasmar series
@@ -129,6 +70,53 @@ function paintSeries() {
   }
 }
 
+// OK
+function isFavorite(idSerie) {
+  //compruebo si la paleta que recibo por parámetro está en los favoritos
+  const favoriteFound = favorites.find((idFavorite) => {
+    // la dificultad de esta función interna del find es saber que tengo que comparar
+    // yo consolearía console.log(fav, palette) para ver los datos que debo comparar
+    return idFavorite.id === idSerie.id;
+  });
+  //find devuelve undefined si no lo encuentra, es decir sino esta en el array de favoritos
+  //retorno si está o no está en favoritos
+  if (favoriteFound === undefined) {
+    //retorno false cuando NO está favoritos
+    return false;
+  } else {
+    //retorno true cuando SI está favoritos
+    return true;
+  }
+}
+
+// OK escuchar click en cada serie
+function listenClickSeries() {
+  const seriesCards = document.querySelectorAll(".js-searchResult_elem");
+  for (const serieCard of seriesCards)
+    serieCard.addEventListener("click", addFavorites);
+}
+
+//  OK comprobar si la clicada está en favoritos
+function addFavorites(ev) {
+  //sacar ID
+  const serieSelected = parseInt(ev.currentTarget.id);
+  // OK comparar arrayFavorites con ID
+  const serieClicked = series.find((idSerie) => {
+    return idSerie.id === serieSelected;
+  });
+  const favAlready = favorites.findIndex((idFavorite) => {
+    return idFavorite.id === serieSelected;
+  });
+
+  if (favAlready === -1) {
+    favorites.push(serieClicked);
+  } else {
+    favorites.splice(favAlready, 1);
+  }
+  paintSeries();
+  paintFavorites();
+}
+
 // OK plasmar favoritos
 function paintFavorites() {
   listFav.innerHTML = "";
@@ -152,6 +140,20 @@ function paintFavorites() {
 
     listenClickedFavorites();
   }
+}
+
+// OK escuchar click en cada favorito
+function listenClickedFavorites() {
+  const favCards = document.querySelectorAll(".js-deleteCross");
+  for (const favCard of favCards) favCard.addEventListener("click", deleteFav);
+}
+
+function deleteFav(ev) {
+  const favClicked = parseInt(ev.currentTarget.id);
+  const favSelected = favorites.findIndex((idFav) => idFav.id === favClicked);
+  favorites.splice(favSelected, 1);
+  paintSeries();
+  paintFavorites();
 }
 
 function favHidden() {

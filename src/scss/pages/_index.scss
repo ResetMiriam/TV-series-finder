@@ -88,7 +88,7 @@ body {
     grid-template-rows: 1fr;
   }
   @media all and (min-width: 1080px) {
-    grid-template-columns: 30vw 70vw;
+    grid-template-columns: auto 70vw;
     grid-template-rows: 1fr;
   }
 }
@@ -189,10 +189,6 @@ body {
   align-items: flex-start;
   justify-content: center;
   border-radius: 20px;
-  min-width: 100vw;
-  @media all and (min-width: 800px) {
-    min-width: 300px;
-  }
 }
 
 .fav_elem {
