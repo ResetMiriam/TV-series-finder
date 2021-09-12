@@ -9,10 +9,10 @@ body {
 .fa-video {
   font-size: 50px;
   color: $pink;
-  border-top: $blue solid 5px;
+
   height: 50px;
   border-radius: 10px;
-  margin: 22px 0px 20px 20px;
+  margin: 30px 0px 20px 20px;
 }
 
 .page__header--title {
@@ -22,7 +22,7 @@ body {
   font-size: 40px;
   color: $blue;
   padding: 30px 0px 20px 20px;
-  @media all and (min-width: 768px) {
+  @media all and (min-width: 800px) {
     font-size: 50px;
   }
   @media all and (min-width: 1208px) {
@@ -75,6 +75,19 @@ body {
   }
 }
 
+.series_container {
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+  margin: 10px 0px 10px 0px;
+  width: 100%;
+  height: auto;
+  @media all and (min-width: 800px) {
+    grid-template-columns: 35% 55%;
+    grid-template-rows: 1fr;
+  }
+}
 .searchResult {
   list-style: none;
   display: flex;
@@ -82,6 +95,15 @@ body {
   justify-content: center;
   padding: 0px;
   margin: 15px 0px 0px 0px;
+  grid-column: 1;
+  grid-row: 2/4;
+  //width: 100%;
+  //height: auto;
+
+  @media all and (min-width: 800px) {
+    grid-column: 2/4;
+    grid-row: 1;
+  }
   &_elem {
     background-color: white;
     border: solid $yellow 5px;
@@ -91,33 +113,20 @@ body {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    width: 250px;
-    height: 330px;
+    width: 227.27px;
+    height: 300px;
     padding: 10px;
     &:hover {
-      background-color: $lightyellow;
+      background-color: $lightpink;
     }
-    @media all and (min-width: 768px) {
+    @media all and (min-width: 800px) {
     }
 
     &-img {
-      width: 185px;
-      height: 260px;
+      width: 150px;
+      height: 200px;
       border-radius: 5px;
     }
-  }
-}
-
-.series_container {
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  margin: 10px 0px 10px 0px;
-  width: 100%;
-  @media all and (min-width: 768px) {
-    flex-direction: row;
-    justify-content: left;
   }
 }
 
@@ -130,25 +139,30 @@ body {
   border-radius: 20px;
   margin: 20px 0;
   border-top: solid 3px $blue;
-  @media all and (min-width: 768px) {
+  grid-column: 1;
+  grid-row: 1/2;
+  @media all and (min-width: 800px) {
     border-right: solid 5px $blue;
     border-top: none;
-    min-width: 300px;
-    width: 40vw;
-    height: auto;
+    //min-width: 300px;
+    //width: 40vw;
+    // height: auto;
     float: left;
     margin: 15px 15px 0px 15px;
+    grid-column: 1/2;
+    grid-row: 1;
   }
   &-list {
     padding: 0 10px;
     margin: 2px;
     border: solid $pink 2px;
-    width: 120px;
-    height: 200px;
+    width: 131px;
+    height: 175px;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    align-items: center;
+    justify-content: space-around;
   }
   &-title {
     font-family: $title-font;
@@ -157,7 +171,7 @@ body {
     font-size: 20px;
     color: $red;
     padding: 10px 0;
-    @media all and (min-width: 768px) {
+    @media all and (min-width: 800px) {
       padding: 20px;
       font-size: 24px;
     }
@@ -171,7 +185,7 @@ body {
   justify-content: center;
   border-radius: 20px;
   min-width: 100vw;
-  @media all and (min-width: 768px) {
+  @media all and (min-width: 800px) {
     min-width: 300px;
   }
 }
@@ -189,7 +203,7 @@ body {
     border-right: 2px solid $yellow;
     text-transform: uppercase;
     background-color: $blue;
-    position: inherit;
+
     &:hover {
       background-color: $yellow;
       border-bottom: 2px solid $yellow;
@@ -199,14 +213,13 @@ body {
       transform: translateY(-2px);
     }
   }
-
   &-img {
-    width: 93px;
-    height: 130px;
+    width: 90px;
+    height: 120px;
     border-radius: 5px;
   }
   &-serieTitle {
-    font-size: 14px;
+    font-size: 13px;
     padding: 5px 0px;
   }
 }
