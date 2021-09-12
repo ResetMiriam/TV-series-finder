@@ -1,40 +1,26 @@
 "use strict";
 
-//----------DECLARACIONES-------------//
+//****************************VAR****************************//
 
-// input filter
+// input search
 const searchText = document.querySelector(".js_formInput");
 // button
 const searchButton = document.querySelector(".js-formButton");
-// ul -- donde se pintan series - selecciono donde se pintan
+// ul -- to pain series
 const listSeries = document.querySelector(".js-searchResult");
 // form
 const requestPanel = document.querySelector(".js-form");
 
-// ul fav -- donde se pintan los favoritos
+// ul fav -- to paint favs
 const listFav = document.querySelector(".js-favListCompleted");
 
-// para utilizar
 let series = [];
 let favorites = [];
 
-//----------FUNCIONES-------------//
+//****************************FUNCTIONS****************************//
 
-//busqueda
-// OK busqueda con la info del input
-function handleSearch() {
-  apiRequest(searchText.value);
-}
+// Fetch API
 
-// Añadimos la informacion al local storage
-function setInLocalStorage() {
-  // stringify me permite transformar a string el array de palettes
-  const stringSeries = JSON.stringify(favorites);
-  //añadimos  al localStorage  los datos convertidos en string previamente
-  localStorage.setItem("favorite", stringSeries);
-}
-
-// OK petición api
 function apiRequest(userSearch) {
   fetch("//api.tvmaze.com/search/shows?q=" + userSearch)
     .then((response) => response.json())
@@ -50,27 +36,14 @@ function apiRequest(userSearch) {
   //
 }
 
-function getLocalStorage() {
-  // obtenermos lo que hay en el LS
-  const localStorageSeriesFav = localStorage.getItem("favorite");
-  // siempre que cojo datos del local storage tengo que comprobar si son válidos
-  // es decir si es la primera vez que entro en la página
-  if (localStorageSeriesFav === null) {
-    // no tengo datos en el local storage, así que llamo al API
-    favorites = [];
-  } else {
-    // sí tengo datos en el local storage, así lo parseo a un array y
-    const arraySeriesFav = JSON.parse(localStorageSeriesFav);
-    // lo guardo en la variable global de palettes
-    favorites = arraySeriesFav;
-    // cada vez que modifico los arrays de palettes o de favorites vuelvo a pintar y a escuchar eventos
-    paintFavorites();
-  }
+// Search input value to fetch
+
+function handleSearch() {
+  apiRequest(searchText.value);
 }
 
-getLocalStorage();
+// Paint search results in HTML
 
-// OK plasmar series
 function paintSeries() {
   listSeries.innerHTML = "";
   let html = "";
@@ -99,44 +72,38 @@ function paintSeries() {
   }
 }
 
-// OK
+// Check if the serie was a favorite to the design
+
 function isFavorite(idSerie) {
-  //compruebo si la paleta que recibo por parámetro está en los favoritos
   const favoriteFound = favorites.find((idFavorite) => {
-    // la dificultad de esta función interna del find es saber que tengo que comparar
-    // yo consolearía console.log(fav, palette) para ver los datos que debo comparar
     return idFavorite.id === idSerie.id;
   });
-  //find devuelve undefined si no lo encuentra, es decir sino esta en el array de favoritos
-  //retorno si está o no está en favoritos
+
   if (favoriteFound === undefined) {
-    //retorno false cuando NO está favoritos
     return false;
   } else {
-    //retorno true cuando SI está favoritos
     return true;
   }
 }
 
-// OK escuchar click en cada serie
+// Listen series click events to add favorites
+
 function listenClickSeries() {
   const seriesCards = document.querySelectorAll(".js-searchResult_elem");
   for (const serieCard of seriesCards)
     serieCard.addEventListener("click", addFavorites);
 }
 
-//  OK comprobar si la clicada está en favoritos
+// Add/Delete favorites
+
 function addFavorites(ev) {
-  //sacar ID
   const serieSelected = parseInt(ev.currentTarget.id);
-  // OK comparar arrayFavorites con ID
   const serieClicked = series.find((idSerie) => {
     return idSerie.id === serieSelected;
   });
   const favAlready = favorites.findIndex((idFavorite) => {
     return idFavorite.id === serieSelected;
   });
-
   if (favAlready === -1) {
     favorites.push(serieClicked);
   } else {
@@ -146,7 +113,8 @@ function addFavorites(ev) {
   paintFavorites();
 }
 
-// OK plasmar favoritos
+// Paint favorites results in HTML
+
 function paintFavorites() {
   listFav.innerHTML = "";
   let htmlFav = "";
@@ -172,37 +140,57 @@ function paintFavorites() {
   }
 }
 
-// OK escuchar click en cada favorito
+// Listen cross button to delete favorites
+
 function listenClickedFavorites() {
   const favCards = document.querySelectorAll(".js-deleteCross");
   for (const favCard of favCards) favCard.addEventListener("click", deleteFav);
 }
 
-function deleteFav(ev) {
-  const favClicked = parseInt(ev.currentTarget.id);
-  const favSelected = favorites.findIndex((idFav) => idFav.id === favClicked);
-  favorites.splice(favSelected, 1);
-  paintSeries();
-  paintFavorites();
+// Add info to localStorage
+
+function setInLocalStorage() {
+  const stringSeries = JSON.stringify(favorites);
+  localStorage.setItem("favorite", stringSeries);
 }
 
-function favHidden() {
-  const favSection = document.querySelector(".js-favArea");
-  if ((favSection.innerHTML = "")) {
-    favSection.classList.add("js-hidden");
+// Get info in localStorage
+
+function getLocalStorage() {
+  const localStorageSeriesFav = localStorage.getItem("favorite");
+
+  if (localStorageSeriesFav === null) {
+    favorites = [];
   } else {
-    favSection.classList.remove("js-hidden");
+    const arraySeriesFav = JSON.parse(localStorageSeriesFav);
+    favorites = arraySeriesFav;
+    paintFavorites();
   }
 }
-
-// preventDefault
+// PreventDefault submit form
 function handleForm(ev) {
   ev.preventDefault();
 }
 
-//----------EVENTOS Y DEMÁS-------------//
+function favHidden() {
+  const listFav = document.querySelector(".js-favArea");
+  if (favSection === "") {
+    listFav.classList.add("js-hidden");
+  } else {
+    listFav.classList.remove("js-hidden");
+  }
+}
 
-// cuando se pulsa el boton -- busqueda con la info del input
-searchButton.addEventListener("click", handleSearch);
-// cuando se envía el form -- preventDefault
+//****************************EXECUTION****************************//
+
+// PreventDefault submit form
+
+getLocalStorage();
+
+// Listen submit to preventDefault
+
 requestPanel.addEventListener("submit", handleForm);
+
+// Listen button to search
+
+searchButton.addEventListener("click", handleSearch);
