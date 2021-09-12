@@ -42,6 +42,12 @@ function handleSearch() {
   apiRequest(searchText.value);
 }
 
+// PreventDefault submit form
+
+function handleForm(ev) {
+  ev.preventDefault();
+}
+
 // Paint search results in HTML
 
 function paintSeries() {
@@ -85,7 +91,6 @@ function isFavorite(idSerie) {
     return true;
   }
 }
-
 // Listen series click events to add favorites
 
 function listenClickSeries() {
@@ -118,7 +123,7 @@ function addFavorites(ev) {
 function paintFavorites() {
   listFav.innerHTML = "";
   let htmlFav = "";
-
+  setInLocalStorage();
   for (const serie of favorites) {
     htmlFav = `<li id=${serie.id} class="fav_section-list js-favSectionList">`;
     htmlFav += `<button id="${serie.id}" class="js-deleteCross fav_elem-delete ">x</button>`;
@@ -134,17 +139,9 @@ function paintFavorites() {
     htmlFav += `<h4 class="fav_elem-serieTitle"> ${serie.name}</h4>`;
     htmlFav += `</li>`;
 
-    setInLocalStorage();
     listFav.innerHTML += htmlFav;
     listenClickedFavorites();
   }
-}
-
-// Listen cross button to delete favorites
-
-function listenClickedFavorites() {
-  const favCards = document.querySelectorAll(".js-deleteCross");
-  for (const favCard of favCards) favCard.addEventListener("click", deleteFav);
 }
 
 // Add info to localStorage
@@ -167,21 +164,38 @@ function getLocalStorage() {
     paintFavorites();
   }
 }
-// PreventDefault submit form
-function handleForm(ev) {
-  ev.preventDefault();
+
+// Listen cross button to delete favorites
+
+function listenClickedFavorites() {
+  const favCards = document.querySelectorAll(".js-deleteCross");
+  for (const favCard of favCards) favCard.addEventListener("click", deleteFav);
+}
+
+// Delete favorites
+function deleteFav(ev) {
+  const favClicked = parseInt(ev.currentTarget.id);
+  const favSelected = favorites.findIndex((idFav) => idFav.id === favClicked);
+  favorites.splice(favSelected, 1);
+
+  paintSeries();
+  paintFavorites();
 }
 
 function favHidden() {
   const listFav = document.querySelector(".js-favArea");
-  if (favSection === "") {
+  if (favorites === []) {
     listFav.classList.add("js-hidden");
   } else {
     listFav.classList.remove("js-hidden");
   }
+  paintSeries();
 }
 
 //****************************EXECUTION****************************//
+// Listen button to search
+
+searchButton.addEventListener("click", handleSearch);
 
 // PreventDefault submit form
 
@@ -190,7 +204,3 @@ getLocalStorage();
 // Listen submit to preventDefault
 
 requestPanel.addEventListener("submit", handleForm);
-
-// Listen button to search
-
-searchButton.addEventListener("click", handleSearch);
