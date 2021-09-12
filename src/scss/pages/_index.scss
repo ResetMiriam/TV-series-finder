@@ -84,11 +84,11 @@ body {
   width: 100%;
   height: auto;
   @media all and (min-width: 800px) {
-    grid-template-columns: auto 70vw;
+    grid-template-columns: auto auto;
     grid-template-rows: 1fr;
   }
   @media all and (min-width: 1080px) {
-    grid-template-columns: auto 70vw;
+    grid-template-columns: auto auto;
     grid-template-rows: 1fr;
   }
 }
@@ -96,7 +96,7 @@ body {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-content: center;
   padding: 0px;
   margin: 15px 30px 0px 30px;
@@ -107,6 +107,11 @@ body {
     grid-row: 1;
     margin: 15px 0px 0px 0px;
     width: 65vw;
+    padding: 0 0px 0 30px;
+  }
+  @media all and (min-width: 1080px) {
+    width: auto;
+    padding: 0px 20px 0px 30px;
   }
   &_elem {
     border: solid $yellow 5px;
@@ -150,12 +155,12 @@ body {
   @media all and (min-width: 800px) {
     border-right: solid 5px $blue;
     border-top: none;
-    float: left;
-    margin: 15px 20px 10px 30px;
+    margin: 15px 0px 10px 30px;
     grid-column: 1/2;
     grid-row: 1;
-    width: 28vw;
+    min-width: 50px;
     max-width: 450px;
+    width: auto;
   }
   &-list {
     padding: 0 10px;
