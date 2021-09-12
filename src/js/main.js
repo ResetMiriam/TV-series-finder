@@ -26,6 +26,14 @@ function handleSearch() {
   apiRequest(searchText.value);
 }
 
+// Añadimos la informacion al local storage
+function setInLocalStorage() {
+  // stringify me permite transformar a string el array de palettes
+  const stringSeries = JSON.stringify(favorites);
+  //añadimos  al localStorage  los datos convertidos en string previamente
+  localStorage.setItem("favorite", stringSeries);
+}
+
 // OK petición api
 function apiRequest(userSearch) {
   fetch("//api.tvmaze.com/search/shows?q=" + userSearch)
@@ -37,9 +45,30 @@ function apiRequest(userSearch) {
         series.push(serie.show);
       }
       paintSeries();
+      setInLocalStorage();
     });
   //
 }
+
+function getLocalStorage() {
+  // obtenermos lo que hay en el LS
+  const localStorageSeriesFav = localStorage.getItem("favorite");
+  // siempre que cojo datos del local storage tengo que comprobar si son válidos
+  // es decir si es la primera vez que entro en la página
+  if (localStorageSeriesFav === null) {
+    // no tengo datos en el local storage, así que llamo al API
+    favorites = [];
+  } else {
+    // sí tengo datos en el local storage, así lo parseo a un array y
+    const arraySeriesFav = JSON.parse(localStorageSeriesFav);
+    // lo guardo en la variable global de palettes
+    favorites = arraySeriesFav;
+    // cada vez que modifico los arrays de palettes o de favorites vuelvo a pintar y a escuchar eventos
+    paintFavorites();
+  }
+}
+
+getLocalStorage();
 
 // OK plasmar series
 function paintSeries() {
@@ -136,8 +165,9 @@ function paintFavorites() {
     }
     htmlFav += `<h4 class="fav_elem-serieTitle"> ${serie.name}</h4>`;
     htmlFav += `</li>`;
-    listFav.innerHTML += htmlFav;
 
+    setInLocalStorage();
+    listFav.innerHTML += htmlFav;
     listenClickedFavorites();
   }
 }
@@ -176,26 +206,3 @@ function handleForm(ev) {
 searchButton.addEventListener("click", handleSearch);
 // cuando se envía el form -- preventDefault
 requestPanel.addEventListener("submit", handleForm);
-
-/* - [x] Diagrama de flujo (esquema)
-- [ ] Hacer la estructura del HTML, css minimo para trabajar
-- [] Pintar una serie
-  -  [ ] Seleccionar los elementos del HTML donde voy a pintar la lista de series
-  - [ ] Hacer peticion al servidor FETCH
-  - [ ] Parsear los datos del servidor .json()
-  - [ ] guardar en una variable global y
-  - [ ] pintar en el HTML los datos
-  - [ ] ponerlo bonito
-- [ ] Pintar muchas series
-- [ ] Seleccionar paletas favorita
-  - [ ] Escuchar evento sobre CLICK sobre las paletas
-  - [ ] Crear una funcion manejadora del evento
-  - [ ] Identificar la paleta clicada
-  - [ ] Añadir a un array de favorito la paleta clicada
-  - [ ] añadir o quitar la clase en el HTML de las paletas clicadas
-- [ ] Localstorage
-- [ ] Filtrar por nombre
-  - [ ] Definir el input del buscador
-  - [ ] Escuchar un evento sobre el input,
-  - [ ] filtrar
-  - [ ] pintar html los datos filtrados */
