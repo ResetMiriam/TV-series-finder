@@ -1,33 +1,32 @@
 body {
   font-family: $title-font;
   box-sizing: border-box;
+  font-family: $title-font;
 }
 
 .page__header {
-  display: flex;
+  &--link {
+    text-decoration: none;
+  }
+  &--title {
+    padding: 40px 20px 20px 30px;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 40px;
+    color: $blue;
+    @media all and (min-width: 800px) {
+      font-size: 50px;
+    }
+    @media all and (min-width: 1208px) {
+      font-size: 55px;
+    }
+  }
 }
 .fa-video {
   font-size: 50px;
   color: $pink;
-
   height: 50px;
   border-radius: 10px;
-  margin: 30px 0px 20px 20px;
-}
-
-.page__header--title {
-  font-family: $title-font;
-  text-transform: uppercase;
-  font-weight: 500;
-  font-size: 40px;
-  color: $blue;
-  padding: 30px 0px 20px 20px;
-  @media all and (min-width: 800px) {
-    font-size: 50px;
-  }
-  @media all and (min-width: 1208px) {
-    font-size: 55px;
-  }
 }
 
 .form {
@@ -38,7 +37,7 @@ body {
     font-weight: 900;
     height: 30px;
     padding: 10px;
-    margin: 20px;
+    margin: 30px 0px 20px 30px;
     outline: none;
     background-color: $bluewhite;
     text-decoration: none;
@@ -51,12 +50,13 @@ body {
     }
   }
   &__button {
+    font-family: $title-font;
     color: $grey;
     font-size: 18px;
     font-weight: 600;
     width: 150px;
     padding: 10px;
-    margin: 20px;
+    margin: 20px 30px;
     height: 40px;
     border: none;
     border-radius: 20px;
@@ -84,7 +84,7 @@ body {
   width: 100%;
   height: auto;
   @media all and (min-width: 800px) {
-    grid-template-columns: 35% 55%;
+    grid-template-columns: 32% 58%;
     grid-template-rows: 1fr;
   }
 }
@@ -93,19 +93,18 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-content: center;
   padding: 0px;
-  margin: 15px 0px 0px 0px;
+  margin: 15px 30px 0px 30px;
   grid-column: 1;
   grid-row: 2/4;
-  //width: 100%;
-  //height: auto;
-
   @media all and (min-width: 800px) {
     grid-column: 2/4;
     grid-row: 1;
+    margin: 15px 0px 0px 30px;
+    width: 60vw;
   }
   &_elem {
-    background-color: white;
     border: solid $yellow 5px;
     border-radius: 20px;
     margin: 2px;
@@ -118,8 +117,6 @@ body {
     padding: 10px;
     &:hover {
       background-color: $lightpink;
-    }
-    @media all and (min-width: 800px) {
     }
 
     &-img {
@@ -137,20 +134,22 @@ body {
   align-items: center;
   text-align: center;
   border-radius: 20px;
-  margin: 20px 0;
-  border-top: solid 3px $blue;
+  margin: 10px 20px 10px 30px;
+  border-top: solid 2px $blue;
+  border-right: solid 2px $blue;
+  width: 80vw;
   grid-column: 1;
   grid-row: 1/2;
+  padding: 10px 0;
+
   @media all and (min-width: 800px) {
     border-right: solid 5px $blue;
     border-top: none;
-    //min-width: 300px;
-    //width: 40vw;
-    // height: auto;
     float: left;
-    margin: 15px 15px 0px 15px;
+    margin: 15px 20px 10px 30px;
     grid-column: 1/2;
     grid-row: 1;
+    width: 30vw;
   }
   &-list {
     padding: 0 10px;

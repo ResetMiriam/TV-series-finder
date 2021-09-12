@@ -47,9 +47,9 @@ function addFavorites(ev) {
 }
 
 function deleteFav(ev) {
-  const favSelected = parseInt(ev.currentTarget.id);
-  const favClicked = favorites.findIndex((idFav) => idFav.id === favSelected);
-  favorites.splice(favClicked, 1);
+  const favClicked = parseInt(ev.currentTarget.id);
+  const favSelected = favorites.findIndex((idFav) => idFav.id === favClicked);
+  favorites.splice(favSelected, 1);
   paintSeries();
   paintFavorites();
 }
