@@ -28,17 +28,17 @@ function handleSearch() {
 //  OK comprobar si la clicada está en favoritos
 function addFavorites(ev) {
   //sacar ID
-  const serieSelected = parseInt(ev.currentTarget.id);
+  const serieClicked = parseInt(ev.currentTarget.id);
   // OK comparar arrayFavorites con ID
-  const serieClicked = series.find((idSerie) => {
-    return idSerie.id === serieSelected;
+  const serieSelected = series.find((idSerie) => {
+    return idSerie.id === serieClicked;
   });
   const favAlready = favorites.findIndex((idFavorite) => {
-    return idFavorite.id === serieSelected;
+    return idFavorite.id === serieClicked;
   });
 
   if (favAlready === -1) {
-    favorites.push(serieClicked);
+    favorites.push(serieSelected);
   } else {
     favorites.splice(favAlready, 1);
   }

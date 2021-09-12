@@ -84,7 +84,11 @@ body {
   width: 100%;
   height: auto;
   @media all and (min-width: 800px) {
-    grid-template-columns: 32% 58%;
+    grid-template-columns: auto 70vw;
+    grid-template-rows: 1fr;
+  }
+  @media all and (min-width: 1080px) {
+    grid-template-columns: 30vw 70vw;
     grid-template-rows: 1fr;
   }
 }
@@ -101,7 +105,7 @@ body {
   @media all and (min-width: 800px) {
     grid-column: 2/4;
     grid-row: 1;
-    margin: 15px 0px 0px 30px;
+    margin: 15px 0px 0px 0px;
     width: 65vw;
   }
   &_elem {
@@ -112,6 +116,7 @@ body {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    text-align: center;
     width: 227.27px;
     height: 300px;
     padding: 10px;
@@ -149,7 +154,8 @@ body {
     margin: 15px 20px 10px 30px;
     grid-column: 1/2;
     grid-row: 1;
-    width: 30vw;
+    width: 28vw;
+    max-width: 450px;
   }
   &-list {
     padding: 0 10px;
@@ -202,14 +208,15 @@ body {
     border-right: 2px solid $yellow;
     text-transform: uppercase;
     background-color: $blue;
-
+    position: absolute;
+    transform: translate(-55px, -80px);
     &:hover {
       background-color: $yellow;
       border-bottom: 2px solid $yellow;
       border-right: 2px solid $yellow;
       box-shadow: 2px 2px 2px;
       color: $grey;
-      transform: translateY(-2px);
+      transform: translate(-57px, -82px);
     }
   }
   &-img {
