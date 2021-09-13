@@ -187,16 +187,6 @@ function deleteFav(ev) {
   paintFavorites();
 }
 
-function favHidden() {
-  const listFav = document.querySelector(".js-favArea");
-  if (favorites === []) {
-    listFav.classList.add("js-hidden");
-  } else {
-    listFav.classList.remove("js-hidden");
-  }
-  paintSeries();
-}
-
 //Reset all favorites button
 
 function resetFav() {
@@ -216,10 +206,10 @@ searchButton.addEventListener("click", handleSearch);
 
 resetButtonFav.addEventListener("click", resetFav);
 
-// PreventDefault submit form
+//  Get info in localStorage execution
 
 getLocalStorage();
 
-// Listen submit to preventDefault
+// PreventDefault submit form
 
 requestPanel.addEventListener("submit", handleForm);
