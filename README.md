@@ -2,7 +2,7 @@
 
 ### Una apasionada desarrolladora frontend viviendo en Madrid
 
-Este es el ejercicio realizado de cara a la primera evaluación de Adalab, correspondiente con el Módulo 2: JavaScript.
+Con este proyecto, realizado con **JavaScript**, podrás buscar y seleccionar tus series favoritas para crear tu lista personalizada.
 
 ## 📄 ¿Qué necesitas tener instalado para ejecutar este proyecto?
 
